@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "885893859537",
+    "project_id": "uasmobile-4963e",
+    "storage_bucket": "uasmobile-4963e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885893859537:android:672feac09098b5e77f1df0",
+        "android_client_info": {
+          "package_name": "com.example.uas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885893859537-5blsov9uo72h6661epo7pq5o185ashmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uas",
+            "certificate_hash": "30aa1c54baf4bc26361c3e30e3aa12548bd663ce"
+          }
+        },
+        {
+          "client_id": "885893859537-1k6r3eui1saoo35p1stpcn9i3lt6or9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDonpiDKxHjvuyMW_koGK3Cb67k4ti3-JA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885893859537-1k6r3eui1saoo35p1stpcn9i3lt6or9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
