@@ -1,3 +1,4 @@
+import 'package:uas/pages/home_page.dart';
 import 'package:uas/pages/register_page.dart';
 //import 'package:uas/pages/second_screen.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return FirstScreen();
+                          return HomePage();
                         },
                       ),
                     );
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return FirstScreen();
+                  return HomePage();
                 },
               ),
             );
