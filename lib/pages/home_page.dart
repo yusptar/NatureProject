@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uas/pages/first_screen.dart';
 import 'package:uas/pages/login_page.dart';
 import 'package:uas/service/sign_in.dart';
+import 'package:uas/pages/home_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,41 +16,90 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color.fromRGBO(244, 243, 243, 1),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        brightness: Brightness.light,
         elevation: 0,
-        actions: <Widget>[
+        iconTheme: IconThemeData(color: Colors.black),
+        actions: [
           Container(
-            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.all(10),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                imageUrl,
-              ),
-              backgroundColor: Colors.transparent,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(4),
-            child: Text(
-              email,
-              style: TextStyle(
-                  height: 3, color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              signOutGoogle();
-
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) {
-                return LoginPage();
-              }), ModalRoute.withName('/'));
-            },
-            icon: Icon(
-              Icons.logout,
-              color: Colors.grey[800],
+              backgroundImage: NetworkImage(imageUrl),
             ),
           )
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://jw-webmagazine.com/wp-content/uploads/2019/06/jw-5d1486c9a694f6.28337520.jpeg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  Container(
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(imageUrl),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    child: Text(
+                      email,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Text("MAIN MENU"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              onTap: () {
+                MaterialPageRoute route =
+                    MaterialPageRoute(builder: (_) => HomePage());
+                Navigator.push(context, route);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.create),
+              title: Text("Create Mountain Data"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.create),
+              title: Text("Create Waterfall Data"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Log Out"),
+              onTap: () {
+                signOutGoogle();
+
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) {
+                  return LoginPage();
+                }), ModalRoute.withName('/'));
+              },
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -67,22 +118,22 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Text(
                       'Find Your',
-                      style: TextStyle(color: Colors.black87, fontSize: 25),
+                      style: TextStyle(color: Colors.black87, fontSize: 20),
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
-                      'Favorite Food',
+                      'Favorite Mountain or Waterfall',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 40,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    /*Container(
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           color: Color.fromRGBO(244, 243, 243, 1),
@@ -101,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(
                       height: 10,
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -123,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -1,6 +1,5 @@
 import 'package:uas/pages/home_page.dart';
 import 'package:uas/pages/register_page.dart';
-//import 'package:uas/pages/second_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:uas/service/sign_in.dart';
 import 'package:uas/pages/first_screen.dart';
