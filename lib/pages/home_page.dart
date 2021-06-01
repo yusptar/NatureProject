@@ -51,6 +51,16 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 10),
                   Container(
                     child: Text(
+                      'Hi ' + name + ' !',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    child: Text(
                       email,
                       style: TextStyle(
                           fontSize: 18,
@@ -77,7 +87,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.create),
+              leading: Icon(Icons.create_outlined),
               title: Text("Create Mountain Data"),
               onTap: () {},
             ),
