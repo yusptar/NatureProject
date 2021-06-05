@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uas/pages/first_screen.dart';
+import 'package:uas/pages/add_item_mountain.dart';
 import 'package:uas/pages/login_page.dart';
 import 'package:uas/service/sign_in.dart';
 import 'package:uas/pages/home_page.dart';
@@ -89,7 +89,11 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.create_outlined),
               title: Text("Create Mountain Data"),
-              onTap: () {},
+              onTap: () {
+                MaterialPageRoute route = MaterialPageRoute(
+                    builder: (_) => AddItemMountain(email: email));
+                Navigator.push(context, route);
+              },
             ),
             ListTile(
               leading: Icon(Icons.create),

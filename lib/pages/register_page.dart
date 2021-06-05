@@ -1,7 +1,6 @@
 import 'login_page.dart';
 import 'package:uas/service/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'first_screen.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
