@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:uas/pages/add_item_mountain.dart';
 import 'package:uas/pages/login_page.dart';
@@ -115,9 +116,28 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 160.0),
+            child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("mountain")
+                  .where("email", isEqualTo: email)
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData)
+                  return new Container(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                return new MyList(document: snapshot.data.docs);
+              },
+            ),
+          ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
@@ -170,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: 20,
               ),
               Padding(
@@ -188,11 +208,78 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+              ),*/
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyList extends StatelessWidget {
+  MyList({this.document});
+  final List<DocumentSnapshot> document;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: document.length,
+      itemBuilder: (BuildContext context, int i) {
+        String title = document[i].data()['title'].toString();
+        String location = document[i].data()['location'].toString();
+        String type = document[i].data()['type'].toString();
+
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(fontSize: 18.0),
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child:
+                                Icon(Icons.location_city, color: Colors.black),
+                          ),
+                          Text(
+                            location,
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(Icons.data_saver_on),
+                          ),
+                          Text(
+                            type,
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () {},
               ),
             ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
