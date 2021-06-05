@@ -46,65 +46,82 @@ class _AddItemMountainState extends State<AddItemMountain> {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              children: [],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          FlutterLogo(size: 60),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            "Create Mountain Data",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2.0,
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Container(
+            width: 310,
+            child: Column(
               children: [
-                Text(
-                  "Create Mountain Data",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30.0,
-                    letterSpacing: 2.0,
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    onChanged: (String str) {
+                      setState(() {
+                        title = str;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.title),
+                      hintText: "Enter Title",
+                    ),
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    onChanged: (String str) {
+                      setState(() {
+                        location = str;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.location_city),
+                      hintText: "Enter Location",
+                    ),
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    onChanged: (String str) {
+                      setState(() {
+                        type = str;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.data_saver_on),
+                      hintText: "Enter Type of Mountain",
+                    ),
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: TextField(
-              onChanged: (String str) {
-                setState(() {
-                  title = str;
-                });
-              },
-              decoration: InputDecoration(
-                  icon: Icon(Icons.title),
-                  hintText: "title",
-                  border: InputBorder.none),
-              style: TextStyle(fontSize: 22.0, color: Colors.black),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 16.0),
-            child: TextField(
-              onChanged: (String str) {
-                setState(() {
-                  location = str;
-                });
-              },
-              decoration: InputDecoration(
-                  icon: Icon(Icons.location_history),
-                  hintText: "location",
-                  border: InputBorder.none),
-              style: TextStyle(fontSize: 22.0, color: Colors.black),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 16.0),
-            child: TextField(
-              onChanged: (String str) {
-                setState(() {
-                  type = str;
-                });
-              },
-              decoration: InputDecoration(
-                  icon: Icon(Icons.merge_type),
-                  hintText: "mount type",
-                  border: InputBorder.none),
-              style: TextStyle(fontSize: 22.0, color: Colors.black),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100.0),
+            padding: const EdgeInsets.only(top: 70.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
