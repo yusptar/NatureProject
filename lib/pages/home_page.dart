@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Text(
                       'List Today',
@@ -195,63 +195,79 @@ class MyList extends StatelessWidget {
         String location = document[i].data()['location'].toString();
         String type = document[i].data()['type'].toString();
 
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child:
-                                Icon(Icons.location_city, color: Colors.black),
-                          ),
-                          Text(
-                            location,
-                            style: TextStyle(fontSize: 14.0),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.data_saver_on),
-                          ),
-                          Text(
-                            type,
-                            style: TextStyle(fontSize: 14.0),
-                          ),
-                        ],
-                      ),
-                    ],
+        return Dismissible(
+          key: Key(document[i].id),
+          onDismissed: (direction) {
+            FirebaseFirestore.instance.runTransaction((transaction) async {
+              DocumentSnapshot snapshot =
+                  await transaction.get(document[i].reference);
+              await transaction.delete(snapshot.reference);
+            });
+
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Data has been deleted"),
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.location_city,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              location,
+                              style: TextStyle(fontSize: 14.0),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.data_saver_on),
+                            ),
+                            Text(
+                              type,
+                              style: TextStyle(fontSize: 14.0),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () {
-                  MaterialPageRoute route = MaterialPageRoute(
-                    builder: (_) => EditMountain(
-                        title: title,
-                        location: location,
-                        type: type,
-                        index: document[i].reference),
-                  );
-                  Navigator.push(context, route);
-                },
-              ),
-            ],
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {
+                    MaterialPageRoute route = MaterialPageRoute(
+                      builder: (_) => EditMountain(
+                          title: title,
+                          location: location,
+                          type: type,
+                          index: document[i].reference),
+                    );
+                    Navigator.push(context, route);
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },
