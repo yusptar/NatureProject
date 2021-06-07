@@ -1,127 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:uas/pages/add_item_mountain.dart';
-import 'package:uas/pages/add_item_waterfall.dart';
-import 'package:uas/pages/edit_mountain.dart';
-import 'package:uas/pages/login_page.dart';
-import 'package:uas/pages/waterfall_page.dart';
+import 'package:uas/pages/edit_waterfall.dart';
 import 'package:uas/service/sign_in.dart';
 
-class HomePage extends StatefulWidget {
+class WaterfallPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WaterfallPageState createState() => _WaterfallPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WaterfallPageState extends State<WaterfallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 243, 243, 1),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        actions: [
-          Container(
-            margin: EdgeInsets.all(10),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(imageUrl),
-            ),
-          )
-        ],
-      ),
-      drawer: Drawer(
-        elevation: 16.0,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                image: DecorationImage(
-                  image: NetworkImage(
-                      'https://cdn.pling.com/img/3/9/2/c/e7c08777001f07b0948f08103c2eacf57a1f.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
-                children: [
-                  SizedBox(height: 20),
-                  Container(
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(imageUrl),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    child: Text(
-                      'Hi ' + name + ' !',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    child: Text(
-                      email,
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Text("MAIN MENU"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
-              onTap: () {
-                MaterialPageRoute route =
-                    MaterialPageRoute(builder: (_) => HomePage());
-                Navigator.push(context, route);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.add),
-              title: Text("Create Mountain Data"),
-              onTap: () {
-                MaterialPageRoute route = MaterialPageRoute(
-                    builder: (_) => AddItemMountain(email: email));
-                Navigator.push(context, route);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.add_circle),
-              title: Text("Create Waterfall Data"),
-              onTap: () {
-                MaterialPageRoute route = MaterialPageRoute(
-                    builder: (_) => AddItemWaterfall(email: email));
-                Navigator.push(context, route);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Log Out"),
-              onTap: () {
-                signOutGoogle();
-
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) {
-                  return LoginPage();
-                }), ModalRoute.withName('/'));
-              },
-            ),
-          ],
-        ),
       ),
       body: Stack(
         children: [
@@ -129,7 +23,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(top: 160.0),
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
-                  .collection("mountain")
+                  .collection("waterfall")
                   .where("email", isEqualTo: email)
                   .snapshots(),
               builder: (BuildContext context,
@@ -140,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                       child: CircularProgressIndicator(),
                     ),
                   );
-                return new MyList(document: snapshot.data.docs);
+                return new MyListWaterfall(document: snapshot.data.docs);
               },
             ),
           ),
@@ -165,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       height: 5,
                     ),
                     Text(
-                      'Favorite Mountain',
+                      'Favorite Waterfall',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 25,
@@ -186,30 +80,23 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          MaterialPageRoute route =
-              MaterialPageRoute(builder: (_) => WaterfallPage());
-          Navigator.push(context, route);
-        },
-        child: Icon(Icons.navigate_next),
-        backgroundColor: Colors.black87,
-      ),
     );
   }
 }
 
-class MyList extends StatelessWidget {
-  MyList({this.document});
+class MyListWaterfall extends StatelessWidget {
+  MyListWaterfall({this.document});
   final List<DocumentSnapshot> document;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: document.length,
       itemBuilder: (BuildContext context, int i) {
-        String title = document[i].data()['title'].toString();
-        String location = document[i].data()['location'].toString();
-        String type = document[i].data()['type'].toString();
+        String titlewaterfall = document[i].data()['titlewaterfall'].toString();
+        String locationwaterfall =
+            document[i].data()['locationwaterfall'].toString();
+        String river = document[i].data()['river'].toString();
+        String height = document[i].data()['height'].toString();
 
         return Dismissible(
           key: Key(document[i].id),
@@ -237,7 +124,7 @@ class MyList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          titlewaterfall,
                           style: TextStyle(fontSize: 18.0),
                         ),
                         Row(
@@ -248,7 +135,7 @@ class MyList extends StatelessWidget {
                                   color: Colors.black),
                             ),
                             Text(
-                              location,
+                              locationwaterfall,
                               style: TextStyle(fontSize: 14.0),
                             ),
                           ],
@@ -257,10 +144,10 @@ class MyList extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.data_saver_on),
+                              child: Icon(Icons.height),
                             ),
                             Text(
-                              type,
+                              height,
                               style: TextStyle(fontSize: 14.0),
                             ),
                           ],
@@ -273,10 +160,11 @@ class MyList extends StatelessWidget {
                   icon: Icon(Icons.edit),
                   onPressed: () {
                     MaterialPageRoute route = MaterialPageRoute(
-                      builder: (_) => EditMountain(
-                          title: title,
-                          location: location,
-                          type: type,
+                      builder: (_) => EditWaterfall(
+                          titlewaterfall: titlewaterfall,
+                          locationwaterfall: locationwaterfall,
+                          river: river,
+                          height: height,
                           index: document[i].reference),
                     );
                     Navigator.push(context, route);

@@ -44,10 +44,6 @@ class _AddItemMountainState extends State<AddItemMountain> {
                       'https://jw-webmagazine.com/wp-content/uploads/2019/06/jw-5d1486c9a694f6.28337520.jpeg'),
                   fit: BoxFit.cover),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [],
-            ),
           ),
           SizedBox(
             height: 30,
