@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 28),
+              SizedBox(height: 50),
               _signInEmail(),
               _signInButton(),
               _registerButton(),
@@ -71,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           TextFormField(
             controller: emailController,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'Enter Email Address',
               labelStyle: TextStyle(color: Colors.white, fontSize: 15),
@@ -81,8 +82,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           TextFormField(
+            style: TextStyle(color: Colors.white),
             obscureText: true,
             controller: passwordController,
             decoration: InputDecoration(
@@ -95,9 +97,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 40),
           Container(
-            margin: EdgeInsets.all(20),
+            margin: EdgeInsets.all(8),
             child: OutlineButton(
               splashColor: Colors.white,
               onPressed: () {
@@ -125,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         'Log in ',
                         style: TextStyle(

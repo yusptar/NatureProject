@@ -50,114 +50,141 @@ class _EditMountainState extends State<EditMountain> {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 200.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      'https://jw-webmagazine.com/wp-content/uploads/2019/06/jw-5d1486c9a694f6.28337520.jpeg'),
-                  fit: BoxFit.cover),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          FlutterLogo(size: 60),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Edit Mountain Data",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0,
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            width: 310,
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: titleController,
-                    onChanged: (String str) {
-                      setState(() {
-                        title = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.title),
-                      hintText: "title",
-                    ),
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+    return Material(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image:
+                  NetworkImage('https://wallpaperaccess.com/full/1941180.jpg')),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    'Update',
+                    style: TextStyle(color: Colors.white, fontSize: 30),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: locationController,
-                    onChanged: (String str) {
-                      setState(() {
-                        location = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.location_history),
-                      hintText: "location",
-                    ),
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  SizedBox(
+                    height: 5,
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: typeController,
-                    onChanged: (String str) {
-                      setState(() {
-                        type = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.merge_type),
-                      hintText: "mount type",
-                    ),
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  Text(
+                    'Mountain Data',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 70.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.check, size: 40.0),
-                  onPressed: () {
-                    _editMountain();
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.close, size: 40.0),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
+            SizedBox(
+              height: 30,
             ),
-          ),
-        ],
+            Container(
+              width: 310,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      controller: titleController,
+                      onChanged: (String str) {
+                        setState(() {
+                          title = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.title, color: Colors.white),
+                        labelText: "Title",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      controller: locationController,
+                      onChanged: (String str) {
+                        setState(() {
+                          location = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.location_city, color: Colors.white),
+                        labelText: "Mountain Location",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      controller: typeController,
+                      onChanged: (String str) {
+                        setState(() {
+                          type = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.merge_type, color: Colors.white),
+                        labelText: "Mountain Type",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 15.0, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 70.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.check, size: 40.0, color: Colors.white),
+                    onPressed: () {
+                      _editMountain();
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.close, size: 40.0, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

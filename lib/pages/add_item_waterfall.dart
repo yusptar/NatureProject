@@ -34,126 +34,159 @@ class _AddItemWaterfallState extends State<AddItemWaterfall> {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 200.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      'https://www.ourtasteforlife.com/wp-content/uploads/2019/09/TIBUMANA-WATERFALL-BALI-1.jpg'),
-                  fit: BoxFit.cover),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          FlutterLogo(size: 60),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Create Waterfall Data",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0,
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            width: 310,
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    onChanged: (String str) {
-                      setState(() {
-                        titlewaterfall = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.title),
-                      hintText: "Enter Title",
-                    ),
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+    return Material(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image:
+                  NetworkImage('https://wallpaperaccess.com/full/2784478.jpg')),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Create',
+                    style: TextStyle(color: Colors.white, fontSize: 30),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    onChanged: (String str) {
-                      setState(() {
-                        locationwaterfall = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.location_city),
-                      hintText: "Enter Location",
-                    ),
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  SizedBox(
+                    height: 5,
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    onChanged: (String str) {
-                      setState(() {
-                        river = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.water),
-                      hintText: "Enter River",
-                    ),
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  Text(
+                    'Waterfall Data',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    onChanged: (String str) {
-                      setState(() {
-                        height = str;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.height),
-                      hintText: "Enter Height of Waterfall (M)",
-                    ),
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.check, size: 40.0),
-                  onPressed: () {
-                    _addWaterfallData();
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.close, size: 40.0),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
+            SizedBox(
+              height: 5,
             ),
-          ),
-        ],
+            Container(
+              width: 310,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      onChanged: (String str) {
+                        setState(() {
+                          titlewaterfall = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.title, color: Colors.white),
+                        labelText: "Enter Title",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      onChanged: (String str) {
+                        setState(() {
+                          locationwaterfall = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.location_city, color: Colors.white),
+                        labelText: "Enter Location",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      onChanged: (String str) {
+                        setState(() {
+                          river = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.water, color: Colors.white),
+                        labelText: "Enter River",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      onChanged: (String str) {
+                        setState(() {
+                          height = str;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.height, color: Colors.white),
+                        labelText: "Enter Height of Waterfall (M)",
+                        labelStyle:
+                            TextStyle(color: Colors.white, fontSize: 15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(fontSize: 18.0, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.check, size: 40.0, color: Colors.white),
+                    onPressed: () {
+                      _addWaterfallData();
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.close, size: 40.0, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -61,14 +61,14 @@ class _WaterfallPageState extends State<WaterfallPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Find Your',
+                        'Database',
                         style: TextStyle(color: Colors.black87, fontSize: 20),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'Favorite Waterfall',
+                        'Waterfall Data',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
@@ -146,6 +146,19 @@ class MyListWaterfall extends StatelessWidget {
                             ),
                             Text(
                               locationwaterfall,
+                              style: TextStyle(
+                                  fontSize: 14.0, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.water, color: Colors.white),
+                            ),
+                            Text(
+                              river,
                               style: TextStyle(
                                   fontSize: 14.0, color: Colors.white),
                             ),

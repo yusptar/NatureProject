@@ -167,14 +167,14 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Find Your',
+                        'Database',
                         style: TextStyle(color: Colors.black87, fontSize: 20),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        'Favorite Mountain',
+                        'Mountain Data',
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,

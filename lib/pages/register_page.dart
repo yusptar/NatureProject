@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 50),
               _RegisterForm(),
             ],
           ),
@@ -67,11 +67,12 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Column(
         children: <Widget>[
           TextFormField(
+            style: TextStyle(color: Colors.white),
             controller: emailController,
             decoration: InputDecoration(
               labelText: 'Enter Email Address',
-              labelStyle: TextStyle(color: Colors.white, fontSize: 15),
               icon: Icon(Icons.email, color: Colors.white),
+              labelStyle: TextStyle(color: Colors.white, fontSize: 15),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.white),
@@ -80,6 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           SizedBox(height: 20),
           TextFormField(
+            style: TextStyle(color: Colors.white),
             controller: passwordController,
             obscureText: true,
             decoration: InputDecoration(
@@ -121,24 +123,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 highlightElevation: 0,
                 borderSide: BorderSide(color: Colors.white),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Register ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Text(
+                    'Register',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(30),
+                margin: EdgeInsets.fromLTRB(0, 30, 0, 30),
                 child: OutlineButton(
                   splashColor: Colors.grey,
                   color: Colors.blueGrey,
@@ -150,19 +146,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   highlightElevation: 0,
                   borderSide: BorderSide(color: Colors.white),
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Cancel ',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
