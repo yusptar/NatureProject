@@ -15,19 +15,43 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(
+                  'https://cutewallpaper.org/21/clean-wallpaper-hd/Clean-Wallpaper-Best-Of-Iphone-X-Iphone-8-Ios-Pixel-Pixel-.jpg')),
+        ),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 100),
-              SizedBox(height: 10),
-              Text(
-                'Register Form for Firebase Authentication',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Page',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 28),
+              SizedBox(height: 10),
               _RegisterForm(),
             ],
           ),
@@ -44,21 +68,33 @@ class _RegisterPageState extends State<RegisterPage> {
         children: <Widget>[
           TextFormField(
             controller: emailController,
-            decoration: const InputDecoration(
-              labelText: 'Email Address',
-              icon: Icon(Icons.email),
+            decoration: InputDecoration(
+              labelText: 'Enter Email Address',
+              labelStyle: TextStyle(color: Colors.white, fontSize: 15),
+              icon: Icon(Icons.email, color: Colors.white),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
           ),
+          SizedBox(height: 20),
           TextFormField(
             controller: passwordController,
             obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: Icon(Icons.input),
+            decoration: InputDecoration(
+              labelText: 'Enter Password',
+              labelStyle: TextStyle(color: Colors.white, fontSize: 15),
+              icon: Icon(Icons.input, color: Colors.white),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
           ),
+          SizedBox(height: 10),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               OutlineButton(
                 splashColor: Colors.grey,
@@ -83,23 +119,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 highlightElevation: 0,
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: BorderSide(color: Colors.white),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          'Register ',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.blue,
-                          ),
+                      Text(
+                        'Register ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -115,23 +148,20 @@ class _RegisterPageState extends State<RegisterPage> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40)),
                   highlightElevation: 0,
-                  borderSide: BorderSide(color: Colors.grey),
+                  borderSide: BorderSide(color: Colors.white),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            'Cancel ',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.blue,
-                            ),
+                        Text(
+                          'Cancel ',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

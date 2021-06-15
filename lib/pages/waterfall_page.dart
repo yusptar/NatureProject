@@ -17,68 +17,78 @@ class _WaterfallPageState extends State<WaterfallPage> {
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 160.0),
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("waterfall")
-                  .where("email", isEqualTo: email)
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData)
-                  return new Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                return new MyListWaterfall(document: snapshot.data.docs);
-              },
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(30))),
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Find Your',
-                      style: TextStyle(color: Colors.black87, fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Favorite Waterfall',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      'List Today',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(
+                  'https://images.unsplash.com/photo-1547276483-835137145b2f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHdhdGVyZmFsbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80')),
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 160.0),
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("waterfall")
+                    .where("email", isEqualTo: email)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData)
+                    return new Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  return new MyListWaterfall(document: snapshot.data.docs);
+                },
               ),
-            ],
-          ),
-        ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(30))),
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Find Your',
+                        style: TextStyle(color: Colors.black87, fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Favorite Waterfall',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        'List Today',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -125,18 +135,19 @@ class MyListWaterfall extends StatelessWidget {
                       children: [
                         Text(
                           titlewaterfall,
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(fontSize: 18.0, color: Colors.white),
                         ),
                         Row(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: Icon(Icons.location_city,
-                                  color: Colors.black),
+                                  color: Colors.white),
                             ),
                             Text(
                               locationwaterfall,
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(
+                                  fontSize: 14.0, color: Colors.white),
                             ),
                           ],
                         ),
@@ -144,11 +155,12 @@ class MyListWaterfall extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.height),
+                              child: Icon(Icons.height, color: Colors.white),
                             ),
                             Text(
                               height,
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(
+                                  fontSize: 14.0, color: Colors.white),
                             ),
                           ],
                         ),
@@ -157,7 +169,7 @@ class MyListWaterfall extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: Icon(Icons.edit, color: Colors.white),
                   onPressed: () {
                     MaterialPageRoute route = MaterialPageRoute(
                       builder: (_) => EditWaterfall(

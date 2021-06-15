@@ -123,68 +123,78 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 160.0),
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("mountain")
-                  .where("email", isEqualTo: email)
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData)
-                  return new Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                return new MyList(document: snapshot.data.docs);
-              },
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(30))),
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Find Your',
-                      style: TextStyle(color: Colors.black87, fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Favorite Mountain',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      'List Today',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(
+                  'https://images.unsplash.com/photo-1574950578143-858c6fc58922?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80')),
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 160.0),
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("mountain")
+                    .where("email", isEqualTo: email)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData)
+                    return new Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  return new MyList(document: snapshot.data.docs);
+                },
               ),
-            ],
-          ),
-        ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(30))),
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Find Your',
+                        style: TextStyle(color: Colors.black87, fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Favorite Mountain',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        'List Today',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -192,8 +202,8 @@ class _HomePageState extends State<HomePage> {
               MaterialPageRoute(builder: (_) => WaterfallPage());
           Navigator.push(context, route);
         },
-        child: Icon(Icons.navigate_next),
-        backgroundColor: Colors.black87,
+        child: Icon(Icons.navigate_next, color: Colors.black),
+        backgroundColor: Colors.white,
       ),
     );
   }
@@ -238,18 +248,19 @@ class MyList extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(fontSize: 18.0, color: Colors.white),
                         ),
                         Row(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: Icon(Icons.location_city,
-                                  color: Colors.black),
+                                  color: Colors.white),
                             ),
                             Text(
                               location,
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(
+                                  fontSize: 14.0, color: Colors.white),
                             ),
                           ],
                         ),
@@ -257,11 +268,13 @@ class MyList extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.data_saver_on),
+                              child: Icon(Icons.data_saver_on,
+                                  color: Colors.white),
                             ),
                             Text(
                               type,
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(
+                                  fontSize: 14.0, color: Colors.white),
                             ),
                           ],
                         ),
@@ -270,7 +283,7 @@ class MyList extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: Icon(Icons.edit, color: Colors.white),
                   onPressed: () {
                     MaterialPageRoute route = MaterialPageRoute(
                       builder: (_) => EditMountain(
